@@ -1,37 +1,34 @@
+//dom-узлы
 const cardTemplate = document.querySelector('#card-template').content;
 const cardList = document.querySelector('.places__list');
 
-// Функция создания карточки
 
-function renderCard(cardData) {
+// Функция создания карточки
+function createCard(cardData, deleteCard) { 
   const cardElement = cardTemplate.cloneNode(true);
   const cardTitle = cardElement.querySelector('.card__title');
   const cardImage = cardElement.querySelector('.card__image');
   cardTitle.textContent = cardData.name;
-  cardImage.setAttribute('alt', cardData.name);
-  cardImage.setAttribute('src', cardData.link);
-  cardDelete(cardElement);
+  cardImage.alt = cardData.name;
+  cardImage.src =  cardData.link;
+  cardElement.querySelector('.card__delete-button').addEventListener('click', deleteCard);
   
-  cardList.append(cardElement);
+  return cardElement;
 };
 
-function cardDelete(element) {
-  const deleteCardButton = element.querySelector('.card__delete-button');
-  deleteCardButton.addEventListener ('click', clickDelete);
-}
-
 //Удаление карточки
-function clickDelete (event){
+function deleteCard (event){
   const currentCard = event.target.closest('.card');
   currentCard.remove();
 }
 
 // вывод на страницу
-function render() {
-  initialCards.forEach(renderCard);
-}
+function render(){
+  initialCards.forEach(function(cardData){;
+  const cardElement = createCard(cardData, deleteCard);
+  cardList.append(cardElement)});
+} 
 
 render();
-
 
 

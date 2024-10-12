@@ -1,24 +1,31 @@
-import { overlay } from "./index";
-
-// функция открытия попапа
+// открытие попапа
 const openPopup = (popup) => {
   popup.classList.add('popup_is-opened');
   document.addEventListener('keydown', handleCloseOnEsc);
-  overlay();  
+  closeOverlay();  
 }
   
-// функция закрытия попапа
+// закрытие попапа
 const closePopup = (popup) => {
   popup.classList.remove('popup_is-opened');
   document.removeEventListener('keydown', handleCloseOnEsc);
 }
 
-//does: закрытие попапа на ESC
+// закрытие попапа на ESC
 const handleCloseOnEsc = (evt) => {
-    if (evt.key === 'Escape') {
-      const openPopup = document.querySelector('.popup_is-opened');
-      closePopup(openPopup)
-    }
+  if (evt.key === 'Escape') {
+    const openPopup = document.querySelector('.popup_is-opened');
+    closePopup(openPopup);
   }
+}
 
+// закрытие попапа нажатием на оверлей
+function closeOverlay(){
+  const modal = document.querySelector('.popup_is-opened');
+  modal.addEventListener('click', (evt) => {
+    if (evt.target === modal){
+      closePopup(modal);
+    }
+  }) 
+}  
 export {openPopup, closePopup};

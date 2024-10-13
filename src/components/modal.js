@@ -2,13 +2,14 @@
 const openPopup = (popup) => {
   popup.classList.add('popup_is-opened');
   document.addEventListener('keydown', handleCloseOnEsc);
-  closeOverlay();  
+  document.addEventListener('click', closeOverlay);
 }
   
 // закрытие попапа
 const closePopup = (popup) => {
   popup.classList.remove('popup_is-opened');
   document.removeEventListener('keydown', handleCloseOnEsc);
+  document.removeEventListener('click', closeOverlay);
 }
 
 // закрытие попапа на ESC
@@ -20,12 +21,10 @@ const handleCloseOnEsc = (evt) => {
 }
 
 // закрытие попапа нажатием на оверлей
-function closeOverlay(){
+function closeOverlay(evt){
   const modal = document.querySelector('.popup_is-opened');
-  modal.addEventListener('click', (evt) => {
     if (evt.target === modal){
       closePopup(modal);
-    }
-  }) 
-}  
+  }
+}
 export {openPopup, closePopup};

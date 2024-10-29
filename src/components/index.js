@@ -4,6 +4,7 @@ import '../pages/index.css';
 import {initialCards} from './cards';
 import {deleteCard, likeCard, createCard} from './card';
 import {openPopup, closePopup} from './modal';
+import {hasInvalidInput, toggleButtonState, checkInputValidity, setEventListeners, enableValidation} from './validation'
 
 // DOM-узлы
 const cardList = document.querySelector('.places__list');
@@ -100,3 +101,4 @@ newCardPopup.addEventListener('submit', function(evt){
 //добавление анимации на попап
 popups.forEach((element) => element.classList.add('popup_is-animated'));
 
+enableValidation();

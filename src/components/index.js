@@ -4,7 +4,7 @@ import '../pages/index.css';
 import {initialCards} from './cards';
 import {deleteCard, likeCard, createCard} from './card';
 import {openPopup, closePopup} from './modal';
-import {hasInvalidInput, toggleButtonState, checkInputValidity, setEventListeners, enableValidation} from './validation'
+import {enableValidation, clearValidation, validationConfig} from './validation'
 
 // DOM-узлы
 const cardList = document.querySelector('.places__list');
@@ -27,6 +27,8 @@ const jobInput = document.querySelector('.popup__input_type_description');
 const cardLinkInput = document.querySelector('.popup__input_type_url');
 const cardNameInput = document.querySelector('.popup__input_type_card-name');
 const profileForm = editPopup.querySelector('.popup__form');
+const btn = document.querySelector('.popup__button')
+
 
 
 //объект функций-параметров
@@ -101,4 +103,10 @@ newCardPopup.addEventListener('submit', function(evt){
 //добавление анимации на попап
 popups.forEach((element) => element.classList.add('popup_is-animated'));
 
-enableValidation();
+// прием всех значений
+enableValidation(validationConfig); 
+
+
+
+// очистка ошибок валидации
+//clearValidation(profileForm, validationConfig); 

@@ -27,9 +27,6 @@ const jobInput = document.querySelector('.popup__input_type_description');
 const cardLinkInput = document.querySelector('.popup__input_type_url');
 const cardNameInput = document.querySelector('.popup__input_type_card-name');
 const profileForm = editPopup.querySelector('.popup__form');
-const btn = document.querySelector('.popup__button')
-
-
 
 //объект функций-параметров
 const functionObj = {
@@ -52,6 +49,7 @@ editButton.addEventListener('click',  () => {
   nameInput.value = profileTitle.textContent;
   jobInput.value = profileJob.textContent;
   openPopup(editPopup);
+  clearValidation(editPopup, validationConfig);
 });
 
 //does: открытие попапа новой карточки
@@ -107,6 +105,3 @@ popups.forEach((element) => element.classList.add('popup_is-animated'));
 enableValidation(validationConfig); 
 
 
-
-// очистка ошибок валидации
-//clearValidation(profileForm, validationConfig); 

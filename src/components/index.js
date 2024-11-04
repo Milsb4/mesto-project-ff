@@ -105,3 +105,16 @@ popups.forEach((element) => element.classList.add('popup_is-animated'));
 enableValidation(validationConfig); 
 
 
+fetch('https://mesto.nomoreparties.co/v1/pwff-cohort-1/users/me',{
+  method: 'GET',
+  headers: {
+    authorization: '4397dce6-8787-4df4-b446-3a1fb71ed542'
+  }
+  })
+  .then(res => res.json())
+    .then((result) => {
+      console.log(result);
+    }); 
+
+
+

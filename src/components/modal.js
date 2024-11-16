@@ -21,7 +21,7 @@ const handleCloseOnEsc = (evt) => {
 }
 
 // закрытие попапа нажатием на оверлей
-function closeOverlay(evt){
+const closeOverlay = (evt) => {
   const modal = document.querySelector('.popup_is-opened');
     if (evt.target === modal){
       closePopup(modal);

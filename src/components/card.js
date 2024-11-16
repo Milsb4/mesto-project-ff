@@ -4,7 +4,7 @@ import { patchLikeCard, deleteLikeCard} from "./api";
 const cardTemplate = document.querySelector('#card-template').content;
 
 // Функция создания карточки
-function createCard(dataSet, userId, handleDeleteCard, clikeLike, openImagePopup) {
+const createCard = (dataSet, userId, handleDeleteCard, clikeLike, openImagePopup) => {
   const cardElement = cardTemplate.querySelector(".card").cloneNode(true);
   const cardTitle = cardElement.querySelector('.card__title');
   const cardImage = cardElement.querySelector('.card__image');
@@ -37,7 +37,7 @@ function createCard(dataSet, userId, handleDeleteCard, clikeLike, openImagePopup
 }; 
 
 //does: Удаление карточки
-function deleteCard(dataset) {
+const deleteCard = (dataset) => {
   if (dataset) {
     dataset.remove();
 } else {
@@ -45,7 +45,7 @@ function deleteCard(dataset) {
 }
 }
 
-function clikeLike(element, cardId, likeCardPlace){
+const clikeLike = (element, cardId, likeCardPlace) => {
 
   const button = element.querySelector('.card__like-button');
   if (!button.classList.contains('card__like-button_is-active')){

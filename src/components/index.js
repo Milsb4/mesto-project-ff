@@ -171,6 +171,7 @@ avatarPopup.addEventListener('submit', (evt) => {
   .then((data) => {
     profileImage.style.backgroundImage = `url(${data.avatar})`;
     closePopup(avatarPopup);
+    evt.target.reset();
   })
   .catch((err) => {
     console.log('Ошибка при отправке URL:', err);

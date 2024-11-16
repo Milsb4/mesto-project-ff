@@ -83,10 +83,8 @@ button.addEventListener('click', function() {
 //does: заполнение формы
 const handleFormSubmit = (evt) => {
   evt.preventDefault();
-  const nameValue = nameInput.value;
-  const jobValue = jobInput.value;
-  profileTitle.textContent = nameValue;
-  profileJob.textContent = jobValue;
+  profileTitle.textContent = nameInput.value;
+  profileJob.textContent = jobInput.value;
   buttonLoading(evt, true);
   patchUsers(nameInput.value, jobInput.value)
   .then(closePopup(editPopup))

@@ -3,7 +3,8 @@ import '../pages/index.css';
 
 import {deleteCard, clikeLike, createCard} from './card';
 import {openPopup, closePopup} from './modal';
-import {enableValidation, clearValidation, validationConfig} from './validation'
+import {enableValidation, clearValidation} from './validation';
+import { validationConfig } from './validationConfig';
 import {
   getInitialCards,
   getUsers,
@@ -80,14 +81,14 @@ button.addEventListener('click', function() {
   }); 
 });
 
-//does: заполнение формы
+//does: заполнение формы о пользователе
 const handleFormSubmit = (evt) => {
   evt.preventDefault();
-  profileTitle.textContent = nameInput.value;
-  profileJob.textContent = jobInput.value;
   buttonLoading(evt, true);
   patchUsers(nameInput.value, jobInput.value)
-  .then(closePopup(editPopup))
+  .then((userData) => {closePopup(editPopup);
+  profileTitle.textContent = userData.name;
+  profileJob.textContent = userData.about})
   .catch((err) => {
     console.error('Ошибка при отправке данных пользователя:', err);
   })
@@ -108,8 +109,8 @@ const addNewCard = (evt) => {
   evt.preventDefault();
   buttonLoading(evt, true);
   postCards(dataset)
-  .then((dataset) => {
-    const cardElement = createCard(dataset,  userId, handleDeleteCard, clikeLike, openImagePopup);
+  .then((cardData) => {
+    const cardElement = createCard(cardData,  userId, handleDeleteCard, clikeLike, openImagePopup);
   cardList.prepend(cardElement);
   closePopup(newCardPopup);
   evt.target.reset();

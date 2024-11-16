@@ -46,21 +46,14 @@ const deleteCard = (dataset) => {
 }
 
 const clikeLike = (element, cardId, likeCardPlace) => {
-
   const button = element.querySelector('.card__like-button');
-  if (!button.classList.contains('card__like-button_is-active')){
-    button.classList.add('card__like-button_is-active');
-   patchLikeCard(cardId)
-   .then((res) => {
-    likeCardPlace.textContent = res.likes.length})
-   }
-    else {
-      button.classList.remove('card__like-button_is-active');  
-    deleteLikeCard(cardId)
+  const likeMethod = button.classList.contains('card__like-button_is-active') ? deleteLikeCard : patchLikeCard;
+  likeMethod(cardId) 
     .then((res) => {
-     likeCardPlace.textContent = res.likes.length})
-  }
+      likeCardPlace.textContent = res.likes.length;
+        button.classList.toggle("card__like-button_is-active"); 
+      })
+    .catch(err => console.log('Ошибка кнопки лайка:', err));
 }
-
 
 export {deleteCard, clikeLike, createCard};

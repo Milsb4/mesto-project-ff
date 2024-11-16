@@ -1,12 +1,3 @@
-const validationConfig = {
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__button',
-  inactiveButtonClass: 'popup__button_disabled',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__error_visible'
-};
-
 //показ ошибки
 const showInputError = (formElement, inputElement, errorMessage, validationConfig) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
@@ -69,7 +60,6 @@ const setEventListeners = (formElement, validationConfig) => {
   });
 };
 
-
 const enableValidation = (validationConfig) => {
   const formList = Array.from(document.querySelectorAll(validationConfig.formSelector));
   formList.forEach((formElement) => {
@@ -80,11 +70,6 @@ const enableValidation = (validationConfig) => {
   });
 };
 
-const  buttonInactive = (button, config) => {
-  button.disabled = config;
-  button.classList.add(validationConfig.inactiveButtonClass);
-}
-
 // отчистка формы 
 const clearValidation = (formElement, validationConfig) => {
   const inputList = Array.from(formElement.querySelectorAll(validationConfig.inputSelector));
@@ -92,7 +77,7 @@ const clearValidation = (formElement, validationConfig) => {
   inputList.forEach((inputElement) => {
     hideInputError(formElement, inputElement, validationConfig);
   })
-  buttonInactive(buttonElement, true);
+  toggleButtonState(inputList, buttonElement, validationConfig); 
 }
 
-export {enableValidation, clearValidation, validationConfig};
+export {enableValidation, clearValidation};
